@@ -34,6 +34,8 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
+    testImplementation("io.mockk:mockk:1.10.6")
 }
 
 application {
