@@ -1,7 +1,10 @@
 package toggle
 
+import org.springframework.stereotype.Component
+
+@Component
 class ToggleRepository {
-    private val toggleDB =  mutableMapOf<String, Boolean>()
+    private val toggleDB = mutableMapOf<String, Boolean>()
 
     fun getValue(name: String): Boolean {
         return toggleDB.getValue(name)
