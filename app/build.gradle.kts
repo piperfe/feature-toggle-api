@@ -38,6 +38,6 @@ tasks.test {
 }
 
 tasks.register<Copy>("installGitHooks") {
-    from(File(rootProject.rootDir, "bin/pre-commit.sh"))
+    from(File(rootProject.rootDir, "bin/pre-commit"))
     into(File(rootProject.rootDir, ".git/hooks"))
 }
