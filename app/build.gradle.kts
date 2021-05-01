@@ -38,6 +38,10 @@ tasks.test {
 }
 
 tasks.register<Copy>("installGitHooks") {
-    from(File(rootProject.rootDir, "bin/pre-commit"))
-    into(File(rootProject.rootDir, ".git/hooks"))
+    copy {
+        from(File(rootProject.rootDir, "bin/pre-commit"))
+        into(File(rootProject.rootDir, ".git/hooks"))
+        fileMode = 157
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
 }
