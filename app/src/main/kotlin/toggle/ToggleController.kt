@@ -17,8 +17,8 @@ class ToggleController(@Autowired val toggleService: ToggleService) {
             .body(Message(name, toggleService.getValue(name)))
     } catch (e: NoSuchElementException) {
         ResponseEntity
-            .status(HttpStatus.NOT_FOUND)
-            .body(null)
+            .notFound()
+            .build()
     }
 }
 
