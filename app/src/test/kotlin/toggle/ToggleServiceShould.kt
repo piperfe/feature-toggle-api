@@ -11,9 +11,9 @@ import kotlin.test.assertTrue
 class ToggleServiceShould {
 
     @MockK
-    var toggleRepository: ToggleRepository = mockk()
+    private val toggleRepository: ToggleRepository = mockk()
 
-    private var toggle = ToggleService(toggleRepository)
+    private val toggle = ToggleService(toggleRepository)
 
     @Test fun `should return true when toggle is on`() {
         every { toggleRepository.getValue("toggle1") } returns true
@@ -26,5 +26,4 @@ class ToggleServiceShould {
 
         toggle.getValue("toggle2")?.let { assertFalse(it) }
     }
-
 }

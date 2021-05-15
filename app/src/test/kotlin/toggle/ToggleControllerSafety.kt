@@ -15,11 +15,9 @@ class ToggleControllerSafety(
     @Autowired val restTemplate: TestRestTemplate,
     @Autowired val toggleRepository: ToggleRepository) {
 
-
     companion object {
         private const val FEATURE_ON = "featureOn"
         private const val FEATURE_OFF = "featureOff"
-        private const val UNKNOWN_FEATURE = "unknownFeature"
     }
 
     @BeforeEach
@@ -40,13 +38,6 @@ class ToggleControllerSafety(
 
         assertEquals(HttpStatus.OK, entity.statusCode)
         assertEquals("{\"name\":\"$FEATURE_ON\",\"value\":true}", entity.body)
-    }
-
-    @Test
-    fun `should return 404 when requested a unknown feature toggle`() {
-        val entity = restTemplate.getForEntity<String>("/feature-toggle/$UNKNOWN_FEATURE")
-
-        assertEquals(HttpStatus.NOT_FOUND, entity.statusCode)
     }
 
     @Test
