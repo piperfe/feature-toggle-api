@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: Feature Toggle API
+  description: Feature Toggle API
+  version: 1.0.0
+servers:
+  - url: http://feature-toggle-api.cl/
+    description: Main (production) server description
+  - url: http://staging-feature-toggle-api.cl
+    description: Main (staging) server description
+
+paths:
+  /feature-toggle/{name}:
+    get:
+      summary: Returns the current value of feature toggle
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: feature toggle's name
+          schema:
+            type : string
+      responses:
+        '200':
+          description: A feature toggle object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: same-day-delivery
+                  value:
+                    type: boolean
+                    example: true
+        '404':
+          description: A feature toggle with the specified name was not found.
+        '500':
+          description: Unexpected error

@@ -4,3 +4,6 @@ gradle/
 gradlew
 gradlew.*
 build
+
+#Openapi generator
+/gen
