@@ -18,13 +18,13 @@ class ToggleServiceShould {
     @Test fun `should return true when toggle is on`() {
         every { toggleRepository.getValue("toggle1") } returns true
 
-        assertTrue(toggle.getValue("toggle1"))
+        toggle.getValue("toggle1")?.let { assertTrue(it) }
     }
 
     @Test fun `should return false when toggle is off`() {
         every { toggleRepository.getValue("toggle2") } returns false
 
-        assertFalse(toggle.getValue("toggle2"))
+        toggle.getValue("toggle2")?.let { assertFalse(it) }
     }
 
 }

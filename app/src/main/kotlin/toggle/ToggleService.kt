@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 @Component
 class ToggleService(@Autowired val toggleRepository: ToggleRepository) {
 
-    fun getValue(name: String): Boolean {
+    fun getValue(name: String): Boolean? {
         return toggleRepository.getValue(name)
     }
 }

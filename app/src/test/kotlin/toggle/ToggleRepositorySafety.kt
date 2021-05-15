@@ -11,8 +11,8 @@ class ToggleRepositorySafety {
         toggleRepository.addToggle("feature1", true)
         toggleRepository.addToggle("feature2", false)
 
-        assertTrue(toggleRepository.getValue("feature1"))
-        assertFalse(toggleRepository.getValue("feature2"))
+        toggleRepository.getValue("feature1")?.let { assertTrue(it) }
+        toggleRepository.getValue("feature2")?.let { assertFalse(it) }
 
         toggleRepository.deleteToggle("feature1")
         toggleRepository.deleteToggle("feature2")
@@ -20,12 +20,9 @@ class ToggleRepositorySafety {
     }
 
     @Test
-    fun `should throws exception when toggle does not exists`() {
-        assertFailsWith<NoSuchElementException> {
-            toggleRepository.getValue("unknown_feature2")
-        }
+    fun `should return null when toggle does not exists`() {
+        assertNull(toggleRepository.getValue("unknown_feature2"))
     }
-
 }
 
 
