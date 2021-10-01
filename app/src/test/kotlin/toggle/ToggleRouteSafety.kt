@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus
 import kotlin.test.*
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ToggleControllerSafety(
+class ToggleRouteSafety(
     @Autowired val restTemplate: TestRestTemplate,
     @Autowired val toggleRepository: ToggleRepository) {
 
@@ -34,16 +34,16 @@ class ToggleControllerSafety(
 
     @Test
     fun `should return 200 and true when requested by feature1`() {
-        val entity = restTemplate.getForEntity<String>("/feature-toggle/$FEATURE_ON")
+        val responseEntity = restTemplate.getForEntity<String>("/feature-toggle/$FEATURE_ON")
 
-        assertEquals(HttpStatus.OK, entity.statusCode)
-        assertEquals("{\"name\":\"$FEATURE_ON\",\"value\":true}", entity.body)
+        assertEquals(HttpStatus.OK, responseEntity.statusCode)
+        assertEquals("{\"name\":\"$FEATURE_ON\",\"value\":true}", responseEntity.body)
     }
 
     @Test
     fun `should return 404 when requested a unknown path`() {
-        val entity = restTemplate.getForEntity<String>("/unknown-path")
+        val responseEntity = restTemplate.getForEntity<String>("/unknown-path")
 
-        assertEquals(HttpStatus.NOT_FOUND, entity.statusCode)
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.statusCode)
     }
 }
